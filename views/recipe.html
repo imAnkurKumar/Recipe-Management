@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share Recipe</title>
+    <link rel="stylesheet" href="/css/recipe.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="/images/logo.png" alt="RecipeShare Logo" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="allRecipe.html">Recipes</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li>
+            <div id="profile-icon" style="display: none">
+              <img src="/images/user.png" alt="Profile Icon" />
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="recipe-form-section">
+      <h1>Share Your Recipe</h1>
+      <form id="recipe-form">
+        <div>
+          <label for="title">Recipe Title:</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+        <div>
+          <label for="ingredients">Ingredients:</label>
+          <textarea
+            id="ingredients"
+            name="ingredients"
+            rows="5"
+            required></textarea>
+        </div>
+        <div>
+          <label for="instructions">Instructions:</label>
+          <textarea
+            id="instructions"
+            name="instructions"
+            rows="8"
+            required></textarea>
+        </div>
+        <div>
+          <label for="preparationTime">Prepartion Time (in minutes):</label>
+          <input
+            type="number"
+            id="preparationTime"
+            name="preparationTime"
+            required />
+        </div>
+        <div>
+          <label for="cookingTime">Cooking Time (in minutes):</label>
+          <input type="number" id="cookingTime" name="cookingTime" required />
+        </div>
+        <div>
+          <label for="image">Upload Image:</label>
+          <input type="file" id="image" name="image" accept="image/*" />
+        </div>
+        <button type="submit" class="submit-btn">Share Recipe</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 RecipeShare. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/recipe.js"></script>
+  </body>
+</html>
