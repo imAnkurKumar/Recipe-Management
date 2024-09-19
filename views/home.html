@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Management</title>
+    <title>RecipeShare - Discover & Share Your Favorite Recipes</title>
     <link rel="stylesheet" href="/css/home.css" />
+    <script
+      src="https://kit.fontawesome.com/your-fontawesome-kit.js"
+      crossorigin="anonymous"></script>
   </head>
   <body>
-    <!-- Navbar -->
     <header>
       <nav class="navbar">
         <div class="logo">
@@ -19,64 +21,69 @@
           <li><a href="allRecipe.html">Recipes</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
-
-          <li>
-            <a href="signup.html" id="get-started-btn" class="btn"
-              >Get Started</a
-            >
-            <div id="profile-icon" style="display: none">
-              <img src="/images/user.png" alt="Profile Icon" />
-            </div>
-          </li>
         </ul>
+        <div class="nav-buttons">
+          <a href="signup.html" id="get-started-btn" class="btn">Get Started</a>
+          <div id="profile-icon">
+            <img src="/images/user.png" alt="Profile Icon" />
+          </div>
+        </div>
       </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Discover & Share Your Favorite Recipes</h1>
-        <p>
-          Join our community of food lovers and explore a world of delicious
-          recipes, from quick meals to gourmet dishes!
-        </p>
-        <img src="/images/center.jpg" alt="Delicious Ingredients" />
-        <!-- Added button to call Share Recipe -->
-        <a href="recipe.html" class="btn">Share Recipe</a>
-      </div>
-    </section>
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Discover & Share Your Favorite Recipes</h1>
+          <p>
+            Join our community of food lovers and explore a world of delicious
+            recipes, from quick meals to gourmet dishes!
+          </p>
+          <a href="recipe.html" class="btn">Share Your Recipe</a>
+        </div>
+        <div class="hero-image">
+          <img src="/images/center2.jpg" alt="Delicious Ingredients" />
+        </div>
+      </section>
 
-    <!-- Features Section -->
-    <section class="features">
-      <div class="feature">
-        <h2>Explore Recipes</h2>
-        <p>
-          Browse through thousands of user-contributed recipes and discover
-          something new to cook every day.
-        </p>
-      </div>
-      <div class="feature">
-        <h2>Share Your Own</h2>
-        <p>
-          Upload your favorite recipes and inspire others to create delicious
-          meals with your tips and tricks.
-        </p>
-      </div>
-      <div class="feature">
-        <h2>Save Your Favorites</h2>
-        <p>
-          Bookmark and organize your favorite recipes to easily find them
-          whenever you're ready to cook.
-        </p>
-      </div>
-    </section>
+      <section class="features">
+        <div class="feature">
+          <i class="fas fa-search"></i>
+          <h2>Explore Recipes</h2>
+          <p>
+            Browse through thousands of user-contributed recipes and discover
+            something new to cook every day.
+          </p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-share-alt"></i>
+          <h2>Share Your Own</h2>
+          <p>
+            Upload your favorite recipes and inspire others to create delicious
+            meals with your tips and tricks.
+          </p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-bookmark"></i>
+          <h2>Save Your Favorites</h2>
+          <p>
+            Bookmark and organize your favorite recipes to easily find them
+            whenever you're ready to cook.
+          </p>
+        </div>
+      </section>
 
-    <!-- Footer -->
+      <section id="cta-section" class="cta">
+        <h2>Ready to start cooking?</h2>
+        <p>Join our community and share your culinary creations today!</p>
+        <a href="signup.html" class="btn">Sign Up Now</a>
+      </section>
+    </main>
+
     <footer>
       <p>&copy; 2024 RecipeShare. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/home.js"></script>
   </body>
 </html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Recipes</title>
+    <title>All Recipes - RecipeShare</title>
     <link rel="stylesheet" href="/css/allRecipe.css" />
   </head>
   <body>
@@ -13,31 +13,35 @@
           <img src="/images/logo.png" alt="RecipeShare Logo" />
         </div>
         <ul class="nav-links">
-          <li><a href="/">Home</a></li>
+          <li><a href="home.html">Home</a></li>
           <li><a href="recipe.html">Share Recipe</a></li>
+          <li><a href="allRecipe.html">Recipes</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
-          <li>
-            <div id="profile-icon" style="display: none">
-              <img src="/images/user.png" alt="Profile Icon" />
-            </div>
-          </li>
         </ul>
+        <div class="nav-buttons">
+          <a href="signup.html" id="get-started-btn" class="btn">Get Started</a>
+          <div id="profile-icon" style="display: none">
+            <img src="/images/user.png" alt="Profile Icon" />
+          </div>
+        </div>
       </nav>
     </header>
 
-    <section class="recipes-section">
-      <h1>All Recipes</h1>
-      <div id="recipes-container" class="recipes-container">
-        <!-- Recipes will be dynamically loaded here -->
-      </div>
-    </section>
+    <main role="main">
+      <section class="section recipes-section">
+        <h1>Discover Delicious Recipes</h1>
+        <div id="recipes-container" class="recipes-container">
+          <!-- Recipe cards will be dynamically inserted here -->
+        </div>
+      </section>
+    </main>
 
     <footer>
-      <p>&copy; 2024 RecipeShare. All rights reserved.</p>
+      <p>© 2024 RecipeShare. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/js/allRecipe.js"></script>
   </body>
 </html>

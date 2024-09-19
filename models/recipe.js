@@ -12,6 +12,10 @@ const Recipe = sequelize.define("recipe", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  dietaryType: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   ingredients: {
     type: Sequelize.TEXT,
     allowNull: false,

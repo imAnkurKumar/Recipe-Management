@@ -1,28 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
   const recipeForm = document.getElementById("recipe-form");
+  const getStartedBtn = document.getElementById("get-started-btn");
+  const profileIcon = document.getElementById("profile-icon");
 
   const token = localStorage.getItem("token");
+
+  // Check if user is logged in
+  if (token) {
+    getStartedBtn.style.display = "none";
+    profileIcon.style.display = "block";
+  } else {
+    getStartedBtn.style.display = "block";
+    profileIcon.style.display = "none";
+  }
+
   recipeForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    if (!token) {
+      alert("Please log in to share a recipe.");
+      return;
+    }
+
     const formData = new FormData(recipeForm);
-    const title = formData.get("title");
-    const ingredients = formData.get("ingredients");
-    const instructions = formData.get("instructions");
-    const preparationTime = formData.get("preparationTime");
-    const cookingTime = formData.get("cookingTime");
-    const imageFile = formData.get("image");
 
     try {
-      const recipeData = new FormData();
-      recipeData.append("title", title);
-      recipeData.append("ingredients", ingredients);
-      recipeData.append("instructions", instructions);
-      recipeData.append("preparationTime", preparationTime);
-      recipeData.append("cookingTime", cookingTime);
-      recipeData.append("image", imageFile);
-
-      const response = await axios.post("/recipes/upload-file", recipeData, {
+      const response = await axios.post("/recipes/upload-file", formData, {
         headers: {
           Authorization: token,
           "Content-Type": "multipart/form-data",
@@ -31,12 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.status === 201) {
         alert("Recipe shared successfully!");
-        // Optionally, reset the form or redirect
         recipeForm.reset();
       }
     } catch (error) {
       console.error("Error sharing recipe:", error);
-      alert("Failed to share the recipe. Please try again later.");
+      if (error.response) {
+        alert(`Failed to share the recipe: ${error.response.data.message}`);
+      } else {
+        alert("Failed to share the recipe. Please try again later.");
+      }
     }
   });
 });

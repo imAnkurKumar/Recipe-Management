@@ -3,8 +3,14 @@ const s3Service = require("../services/s3Services");
 
 const postRecipe = async (req, res, next) => {
   try {
-    const { title, ingredients, instructions, preparationTime, cookingTime } =
-      req.body;
+    const {
+      title,
+      ingredients,
+      instructions,
+      preparationTime,
+      cookingTime,
+      dietaryType,
+    } = req.body;
     const file = req.file; // Assuming the image file comes in as `req.file`
 
     // Check if an image file is provided
@@ -27,6 +33,7 @@ const postRecipe = async (req, res, next) => {
       preparationTime,
       cookingTime,
       imageUrl,
+      dietaryType,
     });
 
     res.status(201).json({ message: "Recipe shared!", recipe: newRecipe });
