@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../middlewares/multer");
-const homeController = require("../controllers/home");
+
+const favoriteController = require("../controllers/favorite");
 const userAuthentication = require("../middlewares/auth");
 
-router.get("/", homeController.homePage);
+router.post("/add", userAuthentication, favoriteController.addToFavorite);
 
 module.exports = router;

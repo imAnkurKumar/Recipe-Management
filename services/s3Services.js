@@ -21,3 +21,18 @@ exports.uploadToS3 = (fileData, fileName) => {
     });
   });
 };
+
+// Function to delete an image from S3
+exports.deleteFromS3 = (fileKey) => {
+  const params = {
+    Bucket: process.env.BUCKET_NAME,
+    Key: fileKey,
+  };
+
+  return new Promise((resolve, reject) => {
+    s3.deleteObject(params, (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+};

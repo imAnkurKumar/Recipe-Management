@@ -11,5 +11,7 @@ router.post(
   upload.single("image"),
   recipeController.postRecipe
 );
-router.get("/getRecipes", userAuthentication, recipeController.getALlRecipes);
+router.get("/getRecipes", userAuthentication, recipeController.getAllRecipes);
+router.get("/:id", userAuthentication, recipeController.getRecipeById);
+
 module.exports = router;
