@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="recipe-info">
           <h3>${recipe.title}</h3>
           <p><strong>Dietary Type:</strong> ${recipe.dietaryType}</p>
-          <button class="view-recipe-btn" data-id="${recipe.id}">View Recipe</button>
-          <button class="edit-recipe-btn" data-id="${recipe.id}">Edit Recipe</button>
-          <button class="delete-recipe-btn" data-id="${recipe.id}">Delete Recipe</button>
+          <button class="btn view-recipe-btn" data-id="${recipe.id}">View Recipe</button>
+          <button class="btn edit-recipe-btn" data-id="${recipe.id}">Edit Recipe</button>
+          <button class="btn delete-recipe-btn" data-id="${recipe.id}">Delete Recipe</button>
         </div>
       `;
 
