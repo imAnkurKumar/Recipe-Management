@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
 
 app.use("/", homeRouter);
+app.use("/home", homeRouter);
 app.use("/user", userRouter);
 app.use("/recipes", recipeRouter);
 app.use("/favorite", favoriteRouter);

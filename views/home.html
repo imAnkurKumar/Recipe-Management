@@ -19,14 +19,19 @@
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
+        <form id="search-form">
+          <input
+            type="text"
+            id="search-input"
+            name="query"
+            placeholder="Search recipes..."
+            required />
+          <button type="submit" class="btn">Search</button>
+        </form>
         <div class="nav-buttons">
           <a href="signup.html" id="get-started-btn" class="btn">Get Started</a>
-
-          <!-- Profile Icon and Dropdown -->
           <div id="profile-dropdown-container">
             <img src="/images/user.png" alt="Profile Icon" id="profile-icon" />
-
-            <!-- Profile dropdown -->
             <div id="profile-dropdown" class="dropdown-content">
               <a href="#" id="view-profile-btn">Your Profile</a>
               <a href="#" id="edit-profile-btn">Edit Profile</a>
@@ -40,9 +45,9 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero" id="hero-section">
         <div class="hero-content">
-          <h1>Discover & Share Your Favorite Recipes</h1>
+          <h2>Discover & Share Your Favorite Recipes</h2>
           <p>
             Join our community of food lovers and explore a world of delicious
             recipes, from quick meals to gourmet dishes!
@@ -53,6 +58,16 @@
           <img src="/images/center2.jpg" alt="Delicious Ingredients" />
         </div>
       </section>
+
+      <!-- Recipe Details Modal -->
+      <div id="recipe-modal" class="recipe-modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div id="recipe-details">
+            <!-- Detailed recipe info will be dynamically loaded here -->
+          </div>
+        </div>
+      </div>
 
       <section class="features">
         <div class="feature">
