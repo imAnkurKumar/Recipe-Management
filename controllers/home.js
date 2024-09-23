@@ -9,21 +9,29 @@ const homePage = async (req, res, next) => {
 
 // Handle the recipe search
 const searchRecipe = async (req, res, next) => {
-  const { query } = req.query; // Adjusted to read from query parameters for GET request
+  const { query, dietaryType, maxPreparationTime } = req.query; // Adjusted to read from query parameters
 
-  if (!query) {
-    return res
-      .status(400)
-      .json({ message: "Please provide a recipe name to search" });
+  const filters = {};
+
+  if (query) {
+    filters.title = {
+      [Sequelize.Op.like]: `%${query}%`, // MySQL uses 'LIKE' for case-insensitive search
+    };
+  }
+
+  if (dietaryType) {
+    filters.dietaryType = dietaryType; // Exact match for dietaryType
+  }
+
+  if (maxPreparationTime) {
+    filters.preparationTime = {
+      [Sequelize.Op.lte]: maxPreparationTime, // Less than or equal to maxPreparationTime
+    };
   }
 
   try {
     const recipes = await Recipe.findAll({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${query}%`, // MySQL uses 'LIKE' for case-insensitive search
-        },
-      },
+      where: filters,
     });
 
     if (recipes.length === 0) {

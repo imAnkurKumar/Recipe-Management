@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (response.status === 200) {
       const recipes = response.data.recipes;
+      console.log("recipes >>> :", recipes);
       recipes.forEach((recipe) => {
         const recipeCard = document.createElement("div");
         recipeCard.classList.add("recipe-card");
@@ -37,17 +38,17 @@ document.addEventListener("DOMContentLoaded", async () => {
           &#9734;</button>
           <h2>${recipe.title}</h2>
           <p><strong>Dietary Type:</strong> ${recipe.dietaryType}</p>
+          <p class="recipe-rating">
+            <strong>Rating:</strong> <span class="average-rating">${recipe.averageRating}</span> / 5
+          </p>
           <button class="view-recipe-btn">View Recipe</button>
-         
         `;
 
-        // Add event listener to the "View Recipe" button
         const viewRecipeBtn = recipeCard.querySelector(".view-recipe-btn");
         viewRecipeBtn.addEventListener("click", () => {
           openModal(recipe.id);
         });
 
-        // Add event listener to the "Favorite" button
         const favoriteBtn = recipeCard.querySelector(".favorite-btn");
         favoriteBtn.addEventListener("click", () => {
           toggleFavorite(recipe.id, favoriteBtn);
@@ -71,16 +72,56 @@ document.addEventListener("DOMContentLoaded", async () => {
       const recipe = response.data.recipe;
 
       modalContent.innerHTML = `
-        <h2>${recipe.title}</h2>
+     <h2>${recipe.title}</h2>
         <img src="${recipe.imageUrl}" alt="${recipe.title}">
         <p><strong>Ingredients:</strong> ${recipe.ingredients}</p>
         <p><strong>Instructions:</strong> ${recipe.instructions}</p>
         <p><strong>Preparation Time:</strong> ${recipe.preparationTime} mins</p>
         <p><strong>Cooking Time:</strong> ${recipe.cookingTime} mins</p>
         <p><strong>Dietary Type:</strong> ${recipe.dietaryType}</p>
+        <div class="rating-section">
+          <h3>Rate this recipe:</h3>
+          <div class="rating-input">
+            <input type="radio" name="rating" value="1" id="rate-1"><label for="rate-1">1</label>
+            <input type="radio" name="rating" value="2" id="rate-2"><label for="rate-2">2</label>
+            <input type="radio" name="rating" value="3" id="rate-3"><label for="rate-3">3</label>
+            <input type="radio" name="rating" value="4" id="rate-4"><label for="rate-4">4</label>
+            <input type="radio" name="rating" value="5" id="rate-5"><label for="rate-5">5</label>
+          </div>
+          <button class="submit-rating-btn">Submit Rating</button>
+        </div>
       `;
 
       modal.style.display = "block";
+      const ratingButtons = modalContent.querySelectorAll(
+        'input[name="rating"]'
+      );
+      const submitRatingBtn = modalContent.querySelector(".submit-rating-btn");
+
+      submitRatingBtn.addEventListener("click", async () => {
+        const selectedRating = Array.from(ratingButtons).find(
+          (btn) => btn.checked
+        )?.value;
+        if (selectedRating) {
+          try {
+            const response = await axios.post(
+              `/rating/${recipeId}/rate`,
+              { ratingValue: selectedRating },
+              { headers: { Authorization: token } }
+            );
+            alert(
+              "Rating submitted! Average rating: " + response.data.averageRating
+            );
+            modal.style.display = "none";
+            location.reload(); // Refresh to show updated rating
+          } catch (error) {
+            console.error("Error submitting rating:", error);
+            alert("Failed to submit rating.");
+          }
+        } else {
+          alert("Please select a rating.");
+        }
+      });
     } catch (error) {
       console.error("Error fetching recipe details:", error);
     }

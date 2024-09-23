@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const ctaSection = document.getElementById("cta-section");
   const profileDropdown = document.getElementById("profile-dropdown");
   const searchForm = document.getElementById("search-form");
+  const logoutBtn = document.getElementById("logout-btn");
 
   const modal = document.getElementById("recipe-modal");
   const modalContent = document.getElementById("recipe-details");
@@ -40,10 +41,22 @@ document.addEventListener("DOMContentLoaded", function () {
   searchForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    query = document.getElementById("search-input").value;
+    const searchInput = document.getElementById("search-input").value;
+    const dietaryFilter = document.getElementById("dietary-filter").value;
+    const prepTimeFilter = document.getElementById("prep-time-filter").value;
+
+    query = `query=${encodeURIComponent(searchInput)}`;
+
+    if (dietaryFilter) {
+      query += `&dietaryType=${encodeURIComponent(dietaryFilter)}`;
+    }
+
+    if (prepTimeFilter) {
+      query += `&maxPreparationTime=${encodeURIComponent(prepTimeFilter)}`;
+    }
 
     try {
-      const response = await axios.get(`/home/search?query=${query}`);
+      const response = await axios.get(`/home/search?${query}`);
 
       if (response.status === 200) {
         const recipes = response.data;
@@ -57,12 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function displaySearchResults(recipes) {
     heroSection.innerHTML = "";
-
-    // Add a heading for the search results
-    const resultsHeading = document.createElement("h2");
-    resultsHeading.classList.add("results-heading");
-    resultsHeading.textContent = "Discover Delicious Recipes";
-    heroSection.appendChild(resultsHeading);
 
     // Create a container for the search result cards
     const searchResultsDiv = document.createElement("div");
@@ -132,6 +139,11 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Recipe ID is undefined.");
       }
     }
+  });
+
+  logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("token");
+    window.location.href = "signUp.html";
   });
 
   closeModal.addEventListener("click", function () {

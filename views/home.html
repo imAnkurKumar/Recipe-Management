@@ -16,8 +16,8 @@
           <li><a href="home.html">Home</a></li>
           <li><a href="recipe.html">Share Recipe</a></li>
           <li><a href="allRecipe.html">Recipes</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <!-- <li><a href="#">About</a></li> -->
+          <!-- <li><a href="#">Contact</a></li> -->
         </ul>
         <form id="search-form">
           <input
@@ -26,6 +26,25 @@
             name="query"
             placeholder="Search recipes..."
             required />
+
+          <!-- Filter by Dietary Preference -->
+          <select id="dietary-filter" name="dietary">
+            <option value="">Dietary Preference</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="gluten-free">Gluten-Free</option>
+            <option value="dairy-free">Dairy-Free</option>
+            <!-- Add more options as needed -->
+          </select>
+
+          <!-- Filter by Preparation Time -->
+          <select id="prep-time-filter" name="prepTime">
+            <option value="">Preparation Time</option>
+            <option value="less than 30 minutes">Less than 30 minutes</option>
+            <option value="30 to 60 minutes">30 to 60 minutes</option>
+            <option value="more than 60 minutes">More than 60 minutes</option>
+          </select>
+
           <button type="submit" class="btn">Search</button>
         </form>
         <div class="nav-buttons">

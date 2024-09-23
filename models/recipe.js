@@ -36,6 +36,10 @@ const Recipe = sequelize.define("recipe", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  averageRating: {
+    type: Sequelize.FLOAT,
+    defaultValue: 0,
+  },
 });
 
 module.exports = Recipe;
