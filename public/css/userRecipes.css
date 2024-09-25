@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #ff7b54; /* Warm, food-related orange */
-  --secondary-color: #ffa630; /* Complementary lighter orange */
-  --accent-color: #a04000; /* Rich brown for accents */
+  --primary-color: #ff7b54;
+  --secondary-color: #ffa630;
+  --accent-color: #a04000;
   --text-color: #333;
-  --bg-color: #fff5e1; /* Light, food-related background color */
+  --bg-color: #fff5e1;
   --white: #fff;
   --navbar-height: 80px;
 }

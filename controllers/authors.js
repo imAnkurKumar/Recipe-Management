@@ -3,14 +3,14 @@ const User = require("../models/user");
 
 const getAuthorRecipes = async (req, res, next) => {
   const authorId = req.params.authorId;
-  console.log("Received Author ID:", authorId); // Add log to confirm ID is received
+  console.log("Received Author ID:", authorId);
 
   try {
     const recipes = await Recipe.findAll({
       where: {
         userId: authorId,
       },
-      include: [{ model: User, attributes: ["name"] }], // Fix the attribute
+      include: [{ model: User, attributes: ["name"] }],
     });
 
     if (recipes.length === 0) {
