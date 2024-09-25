@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const userRecipesContainer = document.getElementById(
     "user-recipes-container"
   );
+  const getStartedBtn = document.getElementById("get-started-btn");
+  const profileIcon = document.getElementById("profile-icon");
+  const profileDropdown = document.getElementById("profile-dropdown");
+  const logoutBtn = document.getElementById("logout-btn");
   const modal = document.getElementById("recipe-modal");
   const modalContent = document.getElementById("recipe-details");
   const closeModal = document.querySelector(".close");
   const token = localStorage.getItem("token");
-
-  // Manage profile icon visibility
-  const getStartedBtn = document.getElementById("get-started-btn");
-  const profileIcon = document.getElementById("profile-icon");
 
   if (token) {
     getStartedBtn.style.display = "none";
@@ -19,8 +19,22 @@ document.addEventListener("DOMContentLoaded", function () {
     profileIcon.style.display = "none";
   }
 
+  profileIcon.addEventListener("click", function () {
+    profileDropdown.style.display =
+      profileDropdown.style.display === "block" ? "none" : "block";
+  });
+
+  window.addEventListener("click", function (e) {
+    if (
+      !profileIcon.contains(e.target) &&
+      !profileDropdown.contains(e.target)
+    ) {
+      profileDropdown.style.display = "none";
+    }
+  });
+
   function renderRecipes(recipes) {
-    userRecipesContainer.innerHTML = ""; // Clear any existing content
+    userRecipesContainer.innerHTML = "";
 
     if (recipes.length === 0) {
       userRecipesContainer.innerHTML =
@@ -156,6 +170,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Fetch and display user's recipes when the page loads
+  logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("token");
+    window.location.href = "signUp.html";
+  });
+
   fetchUserRecipes();
 });

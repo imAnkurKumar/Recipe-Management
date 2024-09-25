@@ -11,11 +11,13 @@ const homeRouter = require("./routes/home");
 const recipeRouter = require("./routes/recipe");
 const favoriteRouter = require("./routes/favorites");
 const ratingRouter = require("./routes/rating");
+const followRouter = require("./routes/follow");
 
 const User = require("./models/user");
 const Recipe = require("./models/recipe");
 const Favorite = require("./models/favorite");
 const Rating = require("./models/rating");
+const Follow = require("./models/follow");
 
 const app = express();
 
@@ -36,6 +38,7 @@ app.use("/user", userRouter);
 app.use("/recipes", recipeRouter);
 app.use("/favorite", favoriteRouter);
 app.use("/rating", ratingRouter);
+app.use("/follow", followRouter);
 
 User.hasMany(Recipe);
 Recipe.belongsTo(User);
@@ -52,12 +55,23 @@ Recipe.belongsToMany(User, {
   foreignKey: "recipeId",
 });
 
-// Set up relationships for Rating
 User.hasMany(Rating);
 Rating.belongsTo(User);
 
 Recipe.hasMany(Rating);
 Rating.belongsTo(Recipe);
+
+User.belongsToMany(User, {
+  through: Follow,
+  as: "Followers",
+  foreignKey: "followingId",
+});
+
+User.belongsToMany(User, {
+  through: Follow,
+  as: "Following",
+  foreignKey: "followerId",
+});
 
 sequelize
   .sync()

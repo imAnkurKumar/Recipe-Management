@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const recipesContainer = document.getElementById("recipes-container");
+  const getStartedBtn = document.getElementById("get-started-btn");
+  const profileIcon = document.getElementById("profile-icon");
+  const profileDropdown = document.getElementById("profile-dropdown");
+  const logoutBtn = document.getElementById("logout-btn");
   const modal = document.getElementById("recipe-modal");
   const modalContent = document.getElementById("recipe-details");
   const closeModal = document.querySelector(".close");
 
   const token = localStorage.getItem("token");
-
-  // Manage profile icon visibility
-  const getStartedBtn = document.getElementById("get-started-btn");
-  const profileIcon = document.getElementById("profile-icon");
 
   if (token) {
     getStartedBtn.style.display = "none";
@@ -17,6 +17,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     getStartedBtn.style.display = "block";
     profileIcon.style.display = "none";
   }
+
+  profileIcon.addEventListener("click", function () {
+    profileDropdown.style.display =
+      profileDropdown.style.display === "block" ? "none" : "block";
+  });
+
+  window.addEventListener("click", function (e) {
+    if (
+      !profileIcon.contains(e.target) &&
+      !profileDropdown.contains(e.target)
+    ) {
+      profileDropdown.style.display = "none";
+    }
+  });
 
   try {
     const response = await axios.get("/recipes/getRecipes", {
@@ -155,4 +169,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Error updating favorites:", error);
     }
   }
+  logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("token");
+    window.location.href = "signUp.html";
+  });
 });

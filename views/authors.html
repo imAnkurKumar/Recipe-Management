@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Favorite Recipes - RecipeShare</title>
-    <link rel="stylesheet" href="/css/favorite.css" />
+    <title>RecipeShare - Authors</title>
+    <link rel="stylesheet" href="/css/authors.css" />
   </head>
   <body>
     <header>
@@ -20,7 +20,7 @@
         </ul>
         <div class="nav-buttons">
           <a href="signup.html" id="get-started-btn" class="btn">Get Started</a>
-          <div id="profile-icon" style="display: none">
+          <div id="profile-dropdown-container">
             <img src="/images/user.png" alt="Profile Icon" id="profile-icon" />
             <div id="profile-dropdown" class="dropdown-content">
               <a href="#" id="view-profile-btn">Your Profile</a>
@@ -34,11 +34,10 @@
       </nav>
     </header>
 
-    <main role="main">
-      <section class="section recipes-section">
-        <h1>Your Favorite Recipes</h1>
-        <div id="user-recipes-container" class="recipes-container">
-          <!-- Recipe cards will be dynamically inserted here -->
+    <main>
+      <section class="authors-section">
+        <div class="authors-grid" id="authors-grid">
+          <!-- Author cards will be dynamically populated here -->
         </div>
       </section>
     </main>
@@ -54,9 +53,9 @@
     </div>
 
     <footer>
-      <p>© 2024 RecipeShare. All rights reserved.</p>
+      <p>&copy; 2024 RecipeShare. All rights reserved.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/js/favorite.js"></script>
+    <script src="/js/authors.js"></script>
   </body>
 </html>

@@ -53,4 +53,17 @@ const login = async (req, res, next) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-module.exports = { signUp, login };
+
+const getAuthors = async (req, res, next) => {
+  try {
+    const authors = await User.findAll({
+      attributes: ["id", "name"],
+    });
+    res.status(200).json(authors);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Failed to fetch authors." });
+  }
+};
+
+module.exports = { signUp, login, getAuthors };
