@@ -12,13 +12,14 @@ const recipeRouter = require("./routes/recipe");
 const favoriteRouter = require("./routes/favorites");
 const ratingRouter = require("./routes/rating");
 const followRouter = require("./routes/follow");
+const resetPasswordRouter = require("./routes/resetPassword");
 
 const User = require("./models/user");
 const Recipe = require("./models/recipe");
 const Favorite = require("./models/favorite");
 const Rating = require("./models/rating");
 const Follow = require("./models/follow");
-
+const ResetPassword = require("./models/resetPassword");
 const app = express();
 
 app.use(
@@ -39,6 +40,7 @@ app.use("/recipes", recipeRouter);
 app.use("/favorite", favoriteRouter);
 app.use("/rating", ratingRouter);
 app.use("/follow", followRouter);
+app.use("/password", resetPasswordRouter);
 
 User.hasMany(Recipe);
 Recipe.belongsTo(User);
@@ -72,6 +74,9 @@ User.belongsToMany(User, {
   as: "Following",
   foreignKey: "followerId",
 });
+
+User.hasMany(ResetPassword);
+ResetPassword.belongsTo(User);
 
 sequelize
   .sync()

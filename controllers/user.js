@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const path = require("path");
 
 function generateAccessToken(id, name) {
   return jwt.sign({ id, name }, process.env.JWT_SECRET);
